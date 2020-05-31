@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Star Wars - API</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="{{url_for('static', filename='style/img/mdb-favicon.ico')}}" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="{{url_for('static', filename='https://use.fontawesome.com/releases/v5.11.2/css/all.css')}}">
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet"
+        href="{{url_for('static',filename='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap')}}">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/mdb.min.css')}}">
+    <!-- Your custom styles (optional) -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark black">
+        <a class="navbar-brand" href="{{url_for('home')}}"><img src="{{url_for('static', filename='img/logo.png')}}"
+                width="50px"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item ">
+                    <a class="nav-link yellow-text" href="{{url_for('personagens')}}">Personagens</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link yellow-text" href="{{url_for('naves')}}">Naves</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5 md-3 mx-auto">
+        <ul class="nav nav-tabs bg-black" id="myTab" role="tablist">
+            <li class="nav-item teste">
+                <a class="nav-link active" id="dados-tab" data-toggle="tab" href="#dados" role="tab" aria-controls="dados"
+                    aria-selected="true">Dados</a>
+            </li>
+            <li class="nav-item teste">
+                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                    aria-selected="true">Filmes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                    aria-controls="profile" aria-selected="false">Veiculos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+                    aria-controls="contact" aria-selected="false">Naves</a>
+            </li>
+        </ul>
+        <div class="tab-content white rounded-bottom" id="myTabContent">
+            <div class="tab-pane fade show active" id="dados" role="tabpanel" aria-labelledby="dados-tab">
+                <ul class="p-2">
+                    
+                    <li>Nome: {{conteudo['name']}}</li>
+                    <li>Planeta: {{conteudo['homeworld']}}</li>
+                    
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <ul class="p-2">
+                    {% for item in conteudo['films'] %}
+                    <li>{{item}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <ul class="p-2">
+                    {% for item in conteudo['vehicles'] %}
+                    <li>{{item}}</li>
+                    {% endfor %}
+                </ul>.
+            </div>
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                <ul class="p-2">
+                    {% for item in conteudo['starships'] %}
+                    <li>{{item}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{{url_for('static', filename='js/popper.min.js')}}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{{url_for('static', filename='js/mdb.min.js')}}"></script>
+    <!-- Your custom scripts (optional) -->
+    <script type="text/javascript"></script>
+
+</body>
+
+</html>
