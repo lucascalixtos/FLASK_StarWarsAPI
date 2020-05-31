@@ -89,6 +89,13 @@ def RealizarRequisicaoDetalhar(nome):
 
     for item in resultado['results']:
         nome = item["name"]
+        peso = item['mass']
+        altura = item['height']
+        cabelo = item['hair_color']
+        pele = item['skin_color']
+        olhos = item['eye_color']
+        nascimento = item['birth_year']
+        genero = item['gender']
         filmesUrl = item['films']
         planetaUrl = item['homeworld']
         veiculosUrl = item['vehicles']
@@ -97,7 +104,7 @@ def RealizarRequisicaoDetalhar(nome):
     planeta = requests.get(planetaUrl)
     planeta = json.loads(planeta.text)
 
-    jsonFinal = {"name": nome, "homeworld": planeta["name"],"films":[],"vehicles":[],"starships":[]}
+    jsonFinal = {"name": nome,"mass": peso, "height": altura, "hair_color": cabelo, "skin_color": pele, "eye_color": olhos, "birth_year": nascimento,"gender": genero, "homeworld": planeta["name"],"films":[],"vehicles":[],"starships":[]}
     jsonFinal = json.dumps(jsonFinal)
     jsonFinal = json.loads(jsonFinal)
 
@@ -116,6 +123,8 @@ def RealizarRequisicaoDetalhar(nome):
         objeto = json.loads(objeto.text)
         jsonFinal['starships'].append(objeto['name'])
     
+    print(jsonFinal)
+
     return jsonFinal
 
 @app.route("/")

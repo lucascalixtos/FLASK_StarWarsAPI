@@ -6,14 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Star Wars - API</title>
-    <!-- MDB icon -->
-    <link rel="icon" href="{{url_for('static', filename='style/img/mdb-favicon.ico')}}" type="image/x-icon">
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="{{url_for('static', filename='https://use.fontawesome.com/releases/v5.11.2/css/all.css')}}">
-    <!-- Google Fonts Roboto -->
-    <link rel="stylesheet"
-        href="{{url_for('static',filename='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap')}}">
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
     <!-- Material Design Bootstrap -->
@@ -64,10 +56,15 @@
         <div class="tab-content white rounded-bottom" id="myTabContent">
             <div class="tab-pane fade show active" id="dados" role="tabpanel" aria-labelledby="dados-tab">
                 <ul class="p-2">
-                    
                     <li>Nome: {{conteudo['name']}}</li>
-                    <li>Planeta: {{conteudo['homeworld']}}</li>
-                    
+                    <li>Planeta Natal: {{conteudo['homeworld']}}</li>
+                    <li>Ano de nascimento: {{conteudo['birth_year']}}</li>
+                    <li>Gênero: {{conteudo['gender']}}</li>
+                    <li>Altura: {{conteudo['height']}}</li>
+                    <li>Peso: {{conteudo['mass']}}</li>
+                    <li>Cor do cabelo: {{conteudo['hair_color']}}</li>
+                    <li>Cor da pele: {{conteudo['skin_color']}}</li>
+                    <li>Cor dos olhos: {{conteudo['eye_color']}}</li>
                 </ul>
             </div>
             <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
