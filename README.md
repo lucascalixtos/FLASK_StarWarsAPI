@@ -16,7 +16,7 @@
             ```
         * Para iniciar a aplicação digite:
             ```sh
-            $ docker build -t flasksw .
+            $ docker run -it -p 5000:5000 flasksw
             ```
         * Aguarde a aplicação ser inicializada. Para acessá-la basta acessar o seguinte endereço:
              ```sh
