@@ -12,7 +12,7 @@ def RealizaRequisicaoPersonagens(pagina):
     #print(parse['results'])
     return resultado
 
-def OrdenarPersonagens(pagina, atributo):
+def OrdenarPersonagens(pagina, atributo, ordem):
     url = "https://swapi.dev/api/people?page=" + str(pagina)
     requisicao = requests.get(url)
     resultado = json.loads(requisicao.text)
@@ -29,12 +29,16 @@ def OrdenarPersonagens(pagina, atributo):
             item['height'] = 0
 
         jsonFinal['results'].append({'name': item['name'], 'gender': item['gender'], 'mass': str(item['mass']).replace(',',''), 'height': str(item['height']).replace(',','')})
-
-    if(atributo == 'name' or atributo == 'gender'):
-        jsonFinal["results"] = sorted(jsonFinal['results'], key=lambda x : x[atributo])
-    else:
-        jsonFinal["results"] = sorted(jsonFinal['results'], key=lambda x : float(x[atributo]), reverse=True)
-        
+    if(ordem == 'cre'):
+        if(atributo == 'name' or atributo == 'gender'):
+            jsonFinal["results"] = sorted(jsonFinal['results'], key=lambda x : x[atributo])
+        else:
+            jsonFinal["results"] = sorted(jsonFinal['results'], key=lambda x : float(x[atributo]))
+    elif(ordem == 'dec'):
+        if(atributo == 'name' or atributo == 'gender'):
+            jsonFinal["results"] = sorted(jsonFinal['results'], key=lambda x : x[atributo], reverse=True)
+        else:
+            jsonFinal["results"] = sorted(jsonFinal['results'], key=lambda x : float(x[atributo]), reverse=True)
 
     return jsonFinal
 
@@ -135,14 +139,14 @@ def home():
 
 
 
-@app.route("/personagens", defaults={'pagina': 1,'atributo': 'null'})
-@app.route("/personagens/<pagina>", defaults={'atributo': 'null'})
-@app.route("/personagens/<pagina>/order/<atributo>")
-def personagens(pagina, atributo):
+@app.route("/personagens", defaults={'pagina': 1,'atributo': 'null','ordem':'null'})
+@app.route("/personagens/<pagina>", defaults={'atributo': 'null','ordem':'null'})
+@app.route("/personagens/<pagina>/order/<atributo>/<ordem>")
+def personagens(pagina, atributo, ordem):
     if(atributo == 'null'):
         conteudo = RealizaRequisicaoPersonagens(pagina)
     else:
-        conteudo = OrdenarPersonagens(pagina, atributo)
+        conteudo = OrdenarPersonagens(pagina, atributo, ordem)
     return render_template("personagens.html", conteudo=conteudo, pagina_atual=pagina)
 
 @app.route("/naves")

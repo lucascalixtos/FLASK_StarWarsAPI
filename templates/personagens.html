@@ -40,14 +40,21 @@
     <table class="table">
       <thead class="black yellow-text">
         <tr>
-          <th scope="col"><a class="yellow-text font-weight-bolder"
-              href="{{url_for('personagens', pagina=pagina_atual, atributo='name')}}">Nome  <img src="{{url_for('static', filename='img/sort.png')}}" width="20x"></a></th>
-          <th scope="col"><a class="yellow-text font-weight-bolder"
-              href="{{url_for('personagens', pagina=pagina_atual, atributo='gender')}}">Gênero  <img src="{{url_for('static', filename='img/sort.png')}}" width="20x"></a></th>
-          <th scope="col"><a class="yellow-text font-weight-bolder"
-              href="{{url_for('personagens', pagina=pagina_atual, atributo='mass')}}">Peso  <img src="{{url_for('static', filename='img/sort.png')}}" width="20x"></a></th>
-          <th scope="col"><a class="yellow-text font-weight-bolder"
-              href="{{url_for('personagens', pagina=pagina_atual, atributo='height')}}">Altura  <img src="{{url_for('static', filename='img/sort.png')}}" width="20x"></a></th>
+          <th scope="col">Nome  <a class="yellow-text font-weight-bolder"
+            href="{{url_for('personagens', pagina=pagina_atual, atributo='name', ordem='cre')}}"><img src="{{url_for('static', filename='img/cre.png')}}" width="20x"><a class="yellow-text font-weight-bolder"
+            href="{{url_for('personagens', pagina=pagina_atual, atributo='name', ordem='dec')}}"><img src="{{url_for('static', filename='img/dec.png')}}" width="20x"></a></th>
+         
+            <th scope="col">Gênero  <a class="yellow-text font-weight-bolder"
+              href="{{url_for('personagens', pagina=pagina_atual, atributo='gender', ordem='cre')}}"><img src="{{url_for('static', filename='img/cre.png')}}" width="20x"></a><a class="yellow-text font-weight-bolder"
+              href="{{url_for('personagens', pagina=pagina_atual, atributo='gender', ordem='dec')}}"><img src="{{url_for('static', filename='img/dec.png')}}" width="20x"></a></th>
+          
+          <th scope="col">Peso  <a class="yellow-text font-weight-bolder"
+            href="{{url_for('personagens', pagina=pagina_atual, atributo='mass', ordem='cre')}}"><img src="{{url_for('static', filename='img/cre.png')}}" width="20x"></a> <a class="yellow-text font-weight-bolder"
+            href="{{url_for('personagens', pagina=pagina_atual, atributo='mass', ordem='dec')}}"><img src="{{url_for('static', filename='img/dec.png')}}" width="20x"></a></th>
+          
+            <th scope="col">Altura  <a class="yellow-text font-weight-bolder"
+            href="{{url_for('personagens', pagina=pagina_atual, atributo='height', ordem='cre')}}"><img src="{{url_for('static', filename='img/cre.png')}}" width="20x"></a><a class="yellow-text font-weight-bolder"
+            href="{{url_for('personagens', pagina=pagina_atual, atributo='height', ordem='dec')}}"><img src="{{url_for('static', filename='img/dec.png')}}" width="20x"></a></th>
           <th scope="col">Detalhar</th>   
         </tr>
       </thead>
@@ -66,12 +73,10 @@
 
     <nav aria-label="Page navigation example">
       <ul class="pagination pg-blue">
-        <li class="page-item"><a class="page-link yellow-text">Previous</a></li>
         {% for item in range((conteudo['count']/10)|int + 1) %}
         <li class="page-item"><a class="page-link yellow-text"
             href={{url_for('personagens', pagina=item+1)}}>{{item + 1}}</a></li>
         {% endfor %}
-        <li class="page-item"><a class="page-link yellow-text">Next</a></li>
       </ul>
     </nav>
 
